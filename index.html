@@ -1,240 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>* KHAIRI ADAM *</title>
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #000000;
+        --primary-color: #000000;
+        --secondary-color: #7f8c8d;
+        --accent-color: #3498db;
+        --skill-bg: #f0f0f0;
+        --border-color: #000000;
+      }
+      body.dark-mode {
+        --bg-color: #000000;
+        --text-color: #ffffff;
+        --primary-color: #ffffff;
+        --secondary-color: #bdc3c7;
+        --accent-color: #1abc9c;
+        --skill-bg: #1a1a1a;
+        --border-color: #ffffff;
+      }
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .dark-mode-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: transparent; /* Make background transparent */
+        color: var(--text-color); /* Change color to match text color */
+        border: 2px solid var(--accent-color); /* Add a border for better visibility */
+        padding: 12px;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        backdrop-filter: blur(5px); /* Optional: adds a slight blur effect */
+      }
 
-  <link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      .dark-mode-toggle:hover {
+        background: var(--accent-color);
+        color: var(--bg-color);
+        transform: scale(1.1); /* Optional: adds a slight scale effect on hover */
+      }
 
-</head>
-<body>
-  <div class="container">
-    <section>
-      <div class="images-container">
-        <div><img src="img/my1.JPG" alt="avatar" class="imaage"> </div>
+      .dark-mode-toggle .sun-icon {
+        display: none;
+      }
 
+      .dark-mode-toggle .moon-icon {
+        display: block;
+      }
 
-      </div>
-      <div>
-        <div class="my-name"> ADAM KHAIRI </div>
-        <div class="my-title">Web Developper</div>
-        <div class="links">
-          <div class="link-item">
-           <i class="material-icons dp48" style="font-size: 1em ; margin-right: 6px" >link</i>
-            <a href="https://www.linkedin.com/in/adam-khairi/">LinkeIdn.Adam_Khairi</a>
-          </div>
-          <div class="link-item">
-            <i class="material-icons dp48" style="font-size: 1em ; margin-right: 6px" >chat</i>
-            <a href="mailto:khairiadam1@gmail.com" >khairiadam1@email.com</a>
-          </div>
-          <div class="link-item">
-            <i class="material-icons dp48" style="font-size: 1em ; margin-right: 6px ">local_phone</i>
-            <a href="tel:+212641145142">+212 641 41 51 42</a>
-          </div>
-        </div> <!-- end links -->
-      </div>
-    </section>
+      body.dark-mode .dark-mode-toggle .sun-icon {
+        display: block;
+      }
 
-    <section>
-      <div class="section-title">EDUCATION</div>
-      <div>
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">YouCode</div>
-              <div class="job-title">Web Developer</div>
-            </div>
-            <div>
-              2019 - 2020
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Education of WEB DEVELOPEMENT for Tow years in YouCode.</p>
-        </div> <!-- end job -->
-
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Group of Excel Media Institutes</div>
-              <div class="job-title">Specialized Technician in Multimedia Development</div>
-            </div>
-            <div>
-              2017 - 2019
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Education of WEB DEVELOPEMENT AND MULTIMEDIA for Tow years in Excel Media.</p>
-        </div> <!-- end job -->
-
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">SPECIALIZED INDUSTRIAL INSTITUTE MARRAKECH</div>
-              <div class="job-title">Technician IT and Network Support and Maintenance</div>
-            </div>
-            <div>
-              2015 - 2017
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Education of Networking and Repairing Equipements  </p>
-        </div> <!-- end job -->
-		  <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Microsoft Office 2010 Master </div>
-              <div class="job-title">Certification Microsoft Office 2010 Master</div>
-            </div>
-            <div>
-              2015 - 2017
-            </div>
-          </div> <!-- end job-title container -->
-			  <pre>
-	- Office Word 2010 Expert.
-	- Office Excel 2010 Expert.
-	- Office PowerPoint 2010.
-	- Office Outlook 2010. </pre>
-        </div> <!-- end job -->
-
-      </div>
-
-
-    </section>
-
-    <section>
-      <div class="section-title">EXPERIENCE</div>
-      <div>
-		  <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Practical Training in Artnes Communication Agency</div>
-              <div class="job-title"></div>
-            </div>
-            <div>
-              20/06/2019 - 15/09/2019
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Graphic Design and Printing Services.</p>
-
-        </div><!-- end job -->
-
-        <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Practical Training in GEANT COMPUTER</div>
-              <div class="job-title"></div>
-            </div>
-            <div>
-              01/07/2017 - 05/08/2017
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Computer installing, reparing hardware and software and Networking.</p>
-
+      body.dark-mode .dark-mode-toggle .moon-icon {
+        display: none;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding-bottom: 10px;
+      }
+      .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        object-fit: cover;
+        border: 3px solid var(--accent-color);
+      }
+      .header-content {
+        flex-grow: 1;
+      }
+      .name {
+        font-size: 2.5em;
+        color: var(--primary-color);
+        margin: 0;
+      }
+      .title {
+        font-size: 1.5em;
+        font-weight: 900;
+        color: var(--secondary-color);
+        margin: 0px 0;
+      }
+      .contact-info {
+        color: var(--primary-color);
+        margin: 10px 0;
+      }
+      .section {
+        margin: 25px 0;
+      }
+      .section-title {
+        color: var(--primary-color);
+        font-size: 1.3em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+      }
+      .experience-item,
+      .education-item {
+        margin-bottom: 20px;
+      }
+      .position {
+        font-weight: bold;
+        color: var(--primary-color);
+      }
+      .company {
+        color: var(--accent-color);
+        font-weight: 600;
+      }
+      .date-location {
+        color: var(--secondary-color);
+        font-size: 0.9em;
+        margin: 5px 0;
+      }
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      .skill {
+        background: var(--skill-bg);
+        padding: 5px 15px;
+        border-radius: 15px;
+        font-size: 0.9em;
+      }
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 600px) {
+        .header {
+          flex-direction: column;
+          text-align: center;
+        }
+        .profile-image {
+          margin: 0 auto;
+        }
+        .dark-mode-toggle {
+          top: auto;
+          bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5" />
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </svg>
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      </svg>
+    </button>
+    <div class="header">
+      <img src="./img/resume.jpg" alt="Profile Photo" class="profile-image" />
+      <!-- <img src="./resume.jpg" alt="Profile Photo" class="profile-image" /> -->
+      <div class="header-content">
+        <h1 class="name">ADAM KHAIRI</h1>
+        <div class="title">Développeur Web</div>
+        <div class="contact-info">
+          <a href="mailto:Khairiadam2@gmail.com">khairiadam2@gmail.com </a>
+          | <a href="tel:+212641145142">+212 6 41 14 51 42</a><br />
+          N 17, Quartier Lot El Macira 42050 Ait Ourir, Marrakech<br />
+          <a href="https://github.com/adamkhairi" target="_blank">github.com/adamkhairi</a>
         </div>
-
-		  <div class="job">
-          <div class="job-title-container">
-            <div>
-              <div class="job-company">Practical Training in HA Group</div>
-              <div class="job-title"></div>
-            </div>
-            <div>
-              01/07/2017 - 16/02/2017
-            </div>
-          </div> <!-- end job-title container -->
-          <p>Computer installing, reparing hardware and software and Networking.</p>
-
-        </div><!-- end job -->
-
       </div>
-    </section>
+    </div>
 
-    <section>
-      <div class="section-title">Skills</div>
-      <div>
-        <div class="skills-container">
-          <ul>
-			  <li>HTML</li>
-			   <div class="w3-light-grey w3-round-xlarge" style="max-width: 22em ;">
-    <div class="w3-container w3-gray w3-round-xlarge" style="width:50%;text-align: center">50%</div>
-  </div>
-            <li>Adobe Illustrator.</li>
-			 <div class="w3-light-grey w3-round-xlarge" style="max-width: 22em ;">
-    <div class="w3-container w3-gray w3-round-xlarge" style="width:65%;text-align: center">65%</div>
-  </div>
+    <div class="section">
+      <h2 class="section-title">EXPÉRIENCE PROFESSIONNELLE</h2>
 
-		    <li>Animation 3D (Cinema 4D , After Effect).</li>
-			   <div class="w3-light-grey w3-round-xlarge" style="max-width: 22em; ">
-    <div class="w3-container w3-gray w3-round-xlarge" style="width:50%;text-align: center">50%</div>
-  </div>
-
-
-          </ul>
-
-          <ul>
-			  <li>Animation 2D (Premiere Pro).</li>
-			   <div class="w3-light-grey w3-round-xlarge" style="max-width: 22em ">
-    <div class="w3-container w3-gray w3-round-xlarge" style="width:60%;text-align: center">60%</div>
-  </div>
-            <li>Installation and Maintenance of IT equipment:</li>
-			  <div class="w3-light-grey w3-round-xlarge" style="max-width: 22em ">
-    <div class="w3-container w3-gray w3-round-xlarge" style="width:65%;text-align: center">65%</div>
-  </div>
-			    <li>Server Administration (Windows 2008 - 2012 / Linux)</li>
-			  <div class="w3-light-grey w3-round-xlarge" style="max-width: 22em ">
-    <div class="w3-container w3-gray w3-round-xlarge" style="width:50%;text-align: center">50%</div>
-
-          </ul>
-
-        </div> <!-- end skills-container -->
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, obcaecati aut quas et voluptatibus dolorem similique, voluptate, totam, corrupti placeat molestiae distinctio consectetur. Et dolorum, eos, expedita debitis sed explicabo.</p>
+      <div class="experience-item">
+        <div class="position">Développeur Front-End Angular - Platform EPEGA Sante Assurance</div>
+        <div class="company">BRIGHT DEV</div>
+        <div class="date-location">07/2021 - 08/2024 | Casablanca</div>
+        <ul>
+          <li>Contribuer au développement et à la maintenance du front-end de la plateforme d'assurance-maladie EPEGA en utilisant Angular</li>
+          <li>Collaboration avec l'équipe fonctionnelles pour définir, concevoir, tester et livrer de nouveaux composants et fonctionnalités</li>
+          <li>Assurer la performance, la qualité et la réactivité des applications</li>
+        </ul>
       </div>
-    </section>
 
-    <section>
-      <div class="section-title">Interests</div>
-      <div class="interests-container">
-        <img src="img/controller.svg" alt="icon">
-        <img src="img/headphones.svg" alt="icon">
-        <img src="img/monitor.svg" alt="icon">
-        <img src="img/camera.svg" alt="icon">
-        <img src="img/video.svg" alt="icon">
-
+      <div class="experience-item">
+        <div class="position">Développeur Web (Stage)</div>
+        <div class="company">INTELLCAP</div>
+        <div class="date-location">07/2020 - 09/2020 | Rabat</div>
+        <ul>
+          <li>Création d'un site web dynamique en utilisant Laravel et JavaScript</li>
+          <li>Contribution à des solutions Web développées pour améliorer l'expérience utilisateur client</li>
+        </ul>
       </div>
-    </section>
 
-    <section>
-      <div class="section-title">About</div>
-      <div>
-	    <span>
-			<div class="infos">
-        <div class="job-company">For more informations</div>
-        <div class="job-title">Feel free to contact me on :</div>
-				</div>
-        <div class="links">
-          <div class="link-item">
-            <i class="material-icons dp48" style="font-size: 1em ; margin-right: 6px" >link</i>
-            <a href="https://www.linkedin.com/in/adam-khairi/">LinkeIdn.Adam_Khairi</a>
-
-          </div>
-          <div class="link-item">
-            <i class="material-icons dp48" style="font-size: 1em ; margin-right: 5px" >chat</i>
-            <a href="mailto:akhairi@student.youcode.ma">Email me</a>
-          </div>
-          <div class="link-item">
-            <i class="material-icons dp48" style="font-size: 1em ; margin-right: 5px">local_phone</i>
-            <a href="tel:+212641145142">+212 641 41 51 42</a>
-          </div>
-        </div>
-		</span>
-		  <!-- end links -->
-        <p class="reference-details">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, quam. Earum suscipit aliquid eius nostrum iste reprehenderit nesciunt, ratione natus consectetur voluptatum magni, culpa in nihil veniam est quod dolorum sunt facere odio quibusdam corporis adipisci fugiat quasi, consequuntur. Debitis?</p>
-
-       <footer style="text-align: center;">See you later</footer>
+      <div class="experience-item">
+        <div class="position">Web Designer (Stage)</div>
+        <div class="company">ARTNÉS COMMUNICATION</div>
+        <div class="date-location">09/2019 - 10/2019 | Ait Ourir</div>
+        <ul>
+          <li>Développer des sites web statiques pour les clients</li>
+          <li>Création des logos, des prospectus, des cartes de visite et des affiches</li>
+        </ul>
       </div>
-    </section>
 
-  </div>
-</body>
+      <div class="experience-item">
+        <div class="position">Technicien Reseaux (Stage)</div>
+        <div class="company">GEANT COMPUTER</div>
+        <div class="date-location">07/2017 - 09/2017 | Marrakech</div>
+        <ul>
+          <li>Installation, Configuration, Maintenance des Équipement Informatique et Réseaux et des Service au niveau Serveur - Linux / Windows Server 2012</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">FORMATIONS</h2>
+
+      <div class="education-item">
+        <div class="position">Developpeur Web Spécialité CSharp</div>
+        <div class="company">YOUCODE</div>
+        <div class="date-location">2019 - 2021 | Youssoufia</div>
+        <div>Web Développement - C#</div>
+      </div>
+
+      <div class="education-item">
+        <div class="position">Technicien Spécialisé en Développement Multimedia</div>
+        <div class="company">GROUPE DES INSTITUTS EXCEL MEDIA</div>
+        <div class="date-location">2017 - 2019 | Marrakech</div>
+        <div>Développement Multimédia</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">COMPÉTENCES</h2>
+      <div class="skills">
+        <span class="skill">Angular</span>
+        <span class="skill">.Net</span>
+        <span class="skill">ASP.Net Core</span>
+        <span class="skill">PHP - Laravel</span>
+        <span class="skill">TypeScript</span>
+        <!-- <span class="skill">Entity Framework</span> -->
+        <span class="skill">SQL / ORM</span>
+        <span class="skill">Design</span>
+        <span class="skill">Linux</span>
+        <span class="skill">Version Control</span>
+        <span class="">|</span>
+        <span class="skill">Auto Formation</span>
+        <span class="skill">Apprentissage et Developpement Continus (AGILE)</span>
+      </div>
+    </div>
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode')
+      }
+    </script>
+  </body>
 </html>
