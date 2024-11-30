@@ -161,26 +161,30 @@
     "fr": [
       "Angular",
       ".Net",
-      "ASP.Net Core",
       "PHP - Laravel",
+      "Node.js",
       "TypeScript",
+      "ASP.Net Core",
       "SQL / ORM",
       "Design",
       "Linux",
-      "Version Control",
-      "Apprentissage et Developpement Continus (AGILE)"
+      "Version Control (Git)",
+      "Azure DevOps",
+      "AGILE"
     ],
     "en": [
       "Angular",
       ".Net",
-      "ASP.Net Core",
       "PHP - Laravel",
+      "Node.js",
       "TypeScript",
+      "ASP.Net Core",
       "SQL / ORM",
       "Design",
       "Linux",
-      "Version Control",
-      "Continuous Learning and Development (AGILE)"
+      "Version Control (Git)",
+      "Azure DevOps",
+      "AGILE"
     ]
   }
 }
