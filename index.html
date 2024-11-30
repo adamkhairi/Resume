@@ -155,7 +155,7 @@
       .language-toggle {
         position: fixed;
         top: 20px;
-        right: 80px;
+        right: 75px;
         background: transparent;
         color: var(--text-color);
         border: 2px solid var(--accent-color);
@@ -187,16 +187,6 @@
         .profile-image {
           margin: 0 auto;
         }
-        .dark-mode-toggle {
-          top: auto;
-          bottom: 20px;
-          right: 20px;
-        }
-        .language-toggle {
-          top: auto;
-          bottom: 20px;
-          right: 80px;
-        }
       }
     </style>
   </head>
@@ -217,7 +207,7 @@
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
     </button>
-    <button id="language-toggle" class="language-toggle">FR</button>
+    <button id="language-toggle" class="language-toggle">EN</button>
     <div class="header">
       <img src="./img/resume.jpg" alt="Profile Photo" class="profile-image" />
       <div class="header-content">
@@ -249,10 +239,14 @@
         document.body.classList.toggle('dark-mode');
       }
 
+      function updateLanguageButton() {
+        const langButton = document.getElementById('language-toggle');
+        langButton.textContent = (currentLanguage === 'fr' ? 'EN' : 'FR');
+      }
+
       function toggleLanguage() {
         currentLanguage = currentLanguage === 'fr' ? 'en' : 'fr';
-        const langButton = document.getElementById('language-toggle');
-        langButton.textContent = currentLanguage.toUpperCase();
+        updateLanguageButton();
         updateContent();
       }
 
@@ -325,6 +319,7 @@
         try {
           const response = await fetch('./content.json');
           resumeData = await response.json();
+          updateLanguageButton(); 
           updateContent();
         } catch (error) {
           console.error('Error loading content:', error);
