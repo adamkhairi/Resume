@@ -1,0 +1,219 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color: #000000;
+  --secondary-color: #7f8c8d;
+  --accent-color: #3498db;
+  --skill-bg: #f0f0f0;
+  --border-color: #000000;
+}
+body.dark-mode {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --primary-color: #ffffff;
+  --secondary-color: #bdc3c7;
+  --accent-color: #1abc9c;
+  --skill-bg: #1a1a1a;
+  --border-color: #ffffff;
+}
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+.dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent; /* Make background transparent */
+  color: var(--text-color); /* Change color to match text color */
+  border: 2px solid var(--accent-color); /* Add a border for better visibility */
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px); /* Optional: adds a slight blur effect */
+}
+
+.dark-mode-toggle:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  transform: scale(1.1); /* Optional: adds a slight scale effect on hover */
+}
+
+.dark-mode-toggle .sun-icon {
+  display: none;
+}
+
+.dark-mode-toggle .moon-icon {
+  display: block;
+}
+
+body.dark-mode .dark-mode-toggle .sun-icon {
+  display: block;
+}
+
+body.dark-mode .dark-mode-toggle .moon-icon {
+  display: none;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 10px;
+}
+.profile-image {
+  width: 150px !important;
+  height: 150px !important;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid var(--accent-color);
+}
+.header-content {
+  flex-grow: 1;
+}
+.name {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  margin: 0;
+}
+.title {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--secondary-color);
+  margin: 0px 0;
+}
+.contact-info {
+  color: var(--primary-color);
+  margin: 10px 0;
+}
+.section {
+  margin: 25px 0;
+}
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.3em;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+.experience-item,
+.education-item {
+  margin-bottom: 20px;
+}
+.position {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.company {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+.date-location {
+  color: var(--secondary-color);
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+.skill {
+  background: var(--skill-bg);
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 0.9em;
+}
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.language-toggle {
+  position: fixed;
+  top: 20px;
+  right: 75px;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+}
+.language-toggle:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  transform: scale(1.1);
+}
+.pdf-button {
+  position: fixed;
+  top: 20px;
+  right: 130px;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  backdrop-filter: blur(5px);
+}
+
+.pdf-button:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-image {
+    margin: 0 auto;
+  }
+  .language-toggle {
+    top: 75px;
+    right: 20px;
+  }
+  .pdf-button {
+    top: 120px;
+    right: 20px;
+  }
+}
+
+a svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}

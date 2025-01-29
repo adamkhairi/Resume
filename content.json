@@ -6,22 +6,24 @@
   "personalInfo": {
     "fr": {
       "name": "ADAM KHAIRI",
-      "title": "Développeur Web",
+      "title": "Développeur Full Stack",
       "contact": {
         "email": "khairiadam2@gmail.com",
         "phone": "+212 6 41 14 51 42",
         "address": "N 17, Quartier Lot El Macira 42050 Ait Ourir, Marrakech",
-        "github": "github.com/adamkhairi"
+        "github": "github.com/adamkhairi",
+        "linkedin": "linkedin.com/in/adam-khairi"
       }
     },
     "en": {
       "name": "ADAM KHAIRI",
-      "title": "Web Developer",
+      "title": "Full Stack Developer",
       "contact": {
         "email": "khairiadam2@gmail.com",
         "phone": "+212 6 41 14 51 42",
         "address": "N 17, Quartier Lot El Macira 42050 Ait Ourir, Marrakech",
-        "github": "github.com/adamkhairi"
+        "github": "github.com/adamkhairi",
+        "linkedin": "linkedin.com/in/adam-khairi"
       }
     }
   },
@@ -40,6 +42,18 @@
   "experience": {
     "fr": [
       {
+        "position": "Formateur en Développement Web",
+        "company": "Atentique Center",
+        "period": "08/2024 - 01/2025",
+        "location": "Marrakech",
+        "responsibilities": [
+          "Formation en développement web : Cours sur HTML, CSS, JS, Python, PHP, React, Angular, Laravel. Groupes de 10-30.",
+          "Suivi personnalisé : Aide aux apprenants, projets individuels.",
+          "Évaluation : Examens pratiques et théoriques.",
+          "Projets réels : Création de sites web et API. Travail en équipe."
+        ]
+      },
+      {
         "position": "Développeur Front-End Angular - Platform EPEGA Sante Assurance",
         "company": "BRIGHT DEV",
         "period": "07/2021 - 08/2024",
@@ -55,32 +69,36 @@
         "company": "INTELLCAP",
         "period": "07/2020 - 09/2020",
         "location": "Rabat",
-        "responsibilities": [
-          "Création d'un site web dynamique en utilisant Laravel et JavaScript",
-          "Contribution à des solutions Web développées pour améliorer l'expérience utilisateur client"
-        ]
+        "responsibilities": ["Création d'un site web dynamique en utilisant Laravel et JavaScript", "Contribution à des solutions Web développées pour améliorer l'expérience utilisateur client"]
       },
       {
         "position": "Web Designer (Stage)",
         "company": "ARTNÉS COMMUNICATION",
         "period": "09/2019 - 10/2019",
         "location": "Ait Ourir",
-        "responsibilities": [
-          "Développer des sites web statiques pour les clients",
-          "Création des logos, des prospectus, des cartes de visite et des affiches"
-        ]
+        "responsibilities": ["Développer des sites web statiques pour les clients", "Création des logos, des prospectus, des cartes de visite et des affiches"]
       },
       {
         "position": "Technicien Reseaux (Stage)",
         "company": "GEANT COMPUTER",
         "period": "07/2017 - 09/2017",
         "location": "Marrakech",
-        "responsibilities": [
-          "Installation, Configuration, Maintenance des Équipement Informatique et Réseaux et des Service au niveau Serveur - Linux / Windows Server 2012"
-        ]
+        "responsibilities": ["Installation, Configuration, Maintenance des Équipement Informatique et Réseaux et des Service au niveau Serveur - Linux / Windows Server 2012"]
       }
     ],
     "en": [
+      {
+        "position": "Web Development Trainer",
+        "company": "Atentique Center",
+        "period": "08/2024 - 01/2025",
+        "location": "Marrakech",
+        "responsibilities": [
+          "Web development training: Courses on HTML, CSS, JS, Python, PHP, React, Angular, Laravel. Groups of 10-30.",
+          "Personalized follow-up: Assistance to learners, individual projects.",
+          "Evaluation: Practical and theoretical exams.",
+          "Real-world projects: Creation of websites and REST APIs. Teamwork."
+        ]
+      },
       {
         "position": "Front-End Angular Developer - EPEGA Health Insurance Platform",
         "company": "BRIGHT DEV",
@@ -97,29 +115,21 @@
         "company": "INTELLCAP",
         "period": "07/2020 - 09/2020",
         "location": "Rabat",
-        "responsibilities": [
-          "Creation of a dynamic website using Laravel and JavaScript",
-          "Contributing to Web solutions developed to improve client user experience"
-        ]
+        "responsibilities": ["Creation of a dynamic website using Laravel and JavaScript", "Contributing to Web solutions developed to improve client user experience"]
       },
       {
         "position": "Web Designer (Internship)",
         "company": "ARTNÉS COMMUNICATION",
         "period": "09/2019 - 10/2019",
         "location": "Ait Ourir",
-        "responsibilities": [
-          "Developing static websites for clients",
-          "Creating logos, brochures, business cards and posters"
-        ]
+        "responsibilities": ["Developing static websites for clients", "Creating logos, brochures, business cards and posters"]
       },
       {
         "position": "Network Technician (Internship)",
         "company": "GEANT COMPUTER",
         "period": "07/2017 - 09/2017",
         "location": "Marrakech",
-        "responsibilities": [
-          "Installation, Configuration, Maintenance of Computer and Network Equipment and Services at Server level - Linux / Windows Server 2012"
-        ]
+        "responsibilities": ["Installation, Configuration, Maintenance of Computer and Network Equipment and Services at Server level - Linux / Windows Server 2012"]
       }
     ]
   },
@@ -158,33 +168,7 @@
     ]
   },
   "skills": {
-    "fr": [
-      "Angular",
-      ".Net",
-      "PHP - Laravel",
-      "Node.js",
-      "TypeScript",
-      "ASP.Net Core",
-      "SQL / ORM",
-      "Design",
-      "Linux",
-      "Version Control (Git)",
-      "Azure DevOps",
-      "AGILE"
-    ],
-    "en": [
-      "Angular",
-      ".Net",
-      "PHP - Laravel",
-      "Node.js",
-      "TypeScript",
-      "ASP.Net Core",
-      "SQL / ORM",
-      "Design",
-      "Linux",
-      "Version Control (Git)",
-      "Azure DevOps",
-      "AGILE"
-    ]
+    "fr": ["Angular", ".Net", "PHP - Laravel", "Node.js", "TypeScript", "ASP.Net Core", "SQL / ORM", "Design", "Linux", "Version Control (Git)", "Azure DevOps", "AGILE", "ExpressJS / Fastify"],
+    "en": ["Angular", ".Net", "PHP - Laravel", "Node.js", "TypeScript", "ASP.Net Core", "SQL / ORM", "Design", "Linux", "Version Control (Git)", "Azure DevOps", "AGILE", "ExpressJS / Fastify"]
   }
 }
