@@ -42,18 +42,6 @@
   "experience": {
     "fr": [
       {
-        "position": "Formateur en Développement Web",
-        "company": "Atentique Center",
-        "period": "08/2024 - 01/2025",
-        "location": "Marrakech",
-        "responsibilities": [
-          "Formation en développement web : Cours sur HTML, CSS, JS, Python, PHP, React, Angular, Laravel. Groupes de 10-30.",
-          "Suivi personnalisé : Aide aux apprenants, projets individuels.",
-          "Évaluation : Examens pratiques et théoriques.",
-          "Projets réels : Création de sites web et API. Travail en équipe."
-        ]
-      },
-      {
         "position": "Développeur Front-End Angular - Platform EPEGA Sante Assurance",
         "company": "BRIGHT DEV",
         "period": "07/2021 - 08/2024",
@@ -87,18 +75,6 @@
       }
     ],
     "en": [
-      {
-        "position": "Web Development Trainer",
-        "company": "Atentique Center",
-        "period": "08/2024 - 01/2025",
-        "location": "Marrakech",
-        "responsibilities": [
-          "Web development training: Courses on HTML, CSS, JS, Python, PHP, React, Angular, Laravel. Groups of 10-30.",
-          "Personalized follow-up: Assistance to learners, individual projects.",
-          "Evaluation: Practical and theoretical exams.",
-          "Real-world projects: Creation of websites and REST APIs. Teamwork."
-        ]
-      },
       {
         "position": "Front-End Angular Developer - EPEGA Health Insurance Platform",
         "company": "BRIGHT DEV",
