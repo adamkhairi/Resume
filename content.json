@@ -42,11 +42,11 @@
   "experience": {
     "fr": [
       {
-        "position" : "Formateur en Développement Web",
-        "company" : "Plateforme EERCHAD (I.N.D.H)",
-        "period" : "09/2024 - Currant",
-        "location" : "Casablanca",
-        "responsibilities" : [
+        "position": "Formateur en Développement Web",
+        "company": "Plateforme EERCHAD (I.N.D.H)",
+        "period": "09/2024 - Currant",
+        "location": "Casablanca",
+        "responsibilities": [
           "Formation en développement web : Cours sur HTML, CSS, JS, React, NodeJs, ExpressJs ,MongoDB, MySQL, TypeScript. Pour des groupes de 20-30 apprenants.",
           "Suivi personnalisé : Aide aux apprenants, projets individuels.",
           "Évaluation : Examens pratiques et théoriques.",
@@ -168,7 +168,7 @@
     ]
   },
   "skills": {
-    "fr": ["Angular", ".Net", "PHP - Laravel", "Node.js", "TypeScript", "ASP.Net Core", "SQL / ORM", "Design", "Linux", "Version Control (Git)", "Azure DevOps", "AGILE", "ExpressJS / Fastify"],
-    "en": ["Angular", ".Net", "PHP - Laravel", "Node.js", "TypeScript", "ASP.Net Core", "SQL / ORM", "Design", "Linux", "Version Control (Git)", "Azure DevOps", "AGILE", "ExpressJS / Fastify"]
+    "fr": ["Angular", ".Net", "PHP - Laravel", "Node.js", "TypeScript", "ASP.Net Core", "SQL / ORM", "Design", "Linux", "Version Control (Git)", "Azure DevOps", "AGILE", "ExpressJS / Fastify", "MongoDB", "MySQL"],
+    "en": ["Angular", ".Net", "PHP - Laravel", "Node.js", "TypeScript", "ASP.Net Core", "SQL / ORM", "Design", "Linux", "Version Control (Git)", "Azure DevOps", "AGILE", "ExpressJS / Fastify", "MongoDB", "MySQL"]
   }
 }
