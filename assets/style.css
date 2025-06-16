@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
@@ -19,7 +21,7 @@ body.dark-mode {
 }
 
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
@@ -28,7 +30,7 @@ body {
   background-color: var(--bg-color);
   transition: background-color 0.3s, color 0.3s;
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 @keyframes float {
@@ -40,25 +42,118 @@ body {
 .tech-icon {
   position: fixed;
   color: var(--accent-color);
-  opacity: 0.35;
-  font-size: 40px;
-  pointer-events: none;
-  z-index: -1;
+  opacity: 0.25;
+  font-size: 50px;
+  pointer-events: auto;
+  z-index: 1;
   animation: float 8s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  mix-blend-mode: multiply;
 }
 
-.tech-icon:nth-child(1) { top: 5%; left: 10%; animation-delay: 0s; }
-.tech-icon:nth-child(2) { top: 15%; left: 85%; animation-delay: 1s; }
-.tech-icon:nth-child(3) { top: 35%; left: 15%; animation-delay: 2s; }
-.tech-icon:nth-child(4) { top: 55%; left: 80%; animation-delay: 3s; }
-.tech-icon:nth-child(5) { top: 75%; left: 25%; animation-delay: 4s; }
-.tech-icon:nth-child(6) { top: 25%; left: 70%; animation-delay: 5s; }
-.tech-icon:nth-child(7) { top: 65%; left: 40%; animation-delay: 6s; }
-.tech-icon:nth-child(8) { top: 45%; left: 60%; animation-delay: 7s; }
-.tech-icon:nth-child(9) { top: 85%; left: 90%; animation-delay: 8s; }
-.tech-icon:nth-child(10) { top: 10%; left: 45%; animation-delay: 9s; }
-.tech-icon:nth-child(11) { top: 50%; left: 30%; animation-delay: 10s; }
-.tech-icon:nth-child(12) { top: 30%; left: 20%; animation-delay: 11s; }
+body.dark-mode .tech-icon {
+  mix-blend-mode: screen;
+}
+
+.tech-icon:hover {
+  opacity: 0.8;
+  z-index: 1000;
+  animation-play-state: paused;
+  mix-blend-mode: normal;
+}
+
+.tech-icon:hover i,
+.tech-icon:hover span {
+  transform: scale(1.2);
+}
+
+/* Tooltip Styles */
+.tech-icon::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tech-icon::after {
+  content: '';
+  position: absolute;
+  top: -37px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--text-color);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.tech-icon:hover::before,
+.tech-icon:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* .NET Text Logo Styling */
+.tech-icon.dotnet-text span {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--accent-color);
+  text-shadow: 0 0 5px var(--accent-color);
+  user-select: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Frontend Technologies */
+.tech-icon:nth-child(1) { top: 8%; left: 12%; animation-delay: 0s; } /* Angular */
+.tech-icon:nth-child(2) { top: 25%; left: 88%; animation-delay: 1s; } /* React */
+.tech-icon:nth-child(3) { top: 45%; left: 8%; animation-delay: 2s; } /* JavaScript */
+.tech-icon:nth-child(4) { top: 65%; left: 85%; animation-delay: 3s; } /* HTML5 */
+.tech-icon:nth-child(5) { top: 80%; left: 15%; animation-delay: 4s; } /* CSS3 */
+
+/* Backend Technologies */
+.tech-icon:nth-child(6) { top: 15%; left: 25%; animation-delay: 5s; } /* Node.js */
+.tech-icon:nth-child(7) { top: 35%; left: 75%; animation-delay: 6s; } /* PHP */
+.tech-icon:nth-child(8) { top: 55%; left: 20%; animation-delay: 7s; } /* Laravel */
+.tech-icon:nth-child(9) { top: 75%; left: 70%; animation-delay: 8s; } /* Microsoft */
+.tech-icon:nth-child(10) { top: 90%; left: 50%; animation-delay: 9s; } /* .NET Core */
+
+/* Databases */
+.tech-icon:nth-child(11) { top: 20%; left: 50%; animation-delay: 10s; } /* Database */
+.tech-icon:nth-child(12) { top: 40%; left: 45%; animation-delay: 11s; } /* MongoDB */
+
+/* Tools & Technologies */
+.tech-icon:nth-child(13) { top: 60%; left: 60%; animation-delay: 12s; } /* Git */
+.tech-icon:nth-child(14) { top: 85%; left: 40%; animation-delay: 13s; } /* Linux */
+.tech-icon:nth-child(15) { top: 10%; left: 70%; animation-delay: 14s; } /* Windows */
+.tech-icon:nth-child(16) { top: 30%; left: 35%; animation-delay: 15s; } /* Server */
+.tech-icon:nth-child(17) { top: 50%; left: 90%; animation-delay: 16s; } /* Code */
+.tech-icon:nth-child(18) { top: 70%; left: 30%; animation-delay: 17s; } /* Laptop Code */
+.tech-icon:nth-child(19) { top: 90%; left: 80%; animation-delay: 18s; } /* Terminal */
+.tech-icon:nth-child(20) { top: 5%; left: 60%; animation-delay: 19s; } /* Cogs */
 
 .tech-icon i {
   filter: drop-shadow(0 0 5px var(--accent-color));
@@ -276,6 +371,8 @@ a svg {
   justify-content: center;
   transition: all 0.3s;
   backdrop-filter: blur(5px);
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .pdf-button:hover {
@@ -297,6 +394,7 @@ a svg {
     right: 20px;
   }
   .pdf-button {
+    margin-top: 12px;
     top: 120px;
     right: 20px;
   }

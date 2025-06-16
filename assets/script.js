@@ -107,170 +107,14 @@ async function loadContent() {
 
 async function exportToPDF() {
   try {
-    // Show loading indicator (visual feedback)
+    // Show loading indicator
     const pdfButton = document.getElementById('pdf-export');
     const originalText = pdfButton.textContent;
     pdfButton.textContent = 'Generating...';
     pdfButton.disabled = true;
 
-    // Hide floating UI elements and profile image for clean capture
-    const elementsToHide = [
-      document.querySelector('.dark-mode-toggle'),
-      document.getElementById('language-toggle'), 
-      document.getElementById('pdf-export')
-    ];
-    
-    elementsToHide.forEach(el => {
-      if (el) el.style.visibility = 'hidden';
-    });
-
-    // Hide profile image and center header content for PDF
-    const profileImage = document.querySelector('.profile-image');
-    const headerElement = document.querySelector('.header');
-    const headerContent = document.querySelector('.header-content');
-    
-    // Store original styles
-    const originalHeaderStyle = headerElement ? headerElement.style.cssText : '';
-    const originalHeaderContentStyle = headerContent ? headerContent.style.cssText : '';
-    
-    if (profileImage) {
-      profileImage.style.display = 'none';
-    }
-    
-    if (headerElement) {
-      headerElement.style.justifyContent = 'center';
-      headerElement.style.textAlign = 'center';
-    }
-    
-    if (headerContent) {
-      headerContent.style.textAlign = 'center';
-      headerContent.style.width = '100%';
-    }
-
-    // Wait a moment for DOM updates
-    await new Promise(resolve => setTimeout(resolve, 100));
-
-    // Force a reflow to ensure proper dimensions
-    document.body.style.overflow = 'visible';
-    document.documentElement.style.overflow = 'visible';
-    
-    // Get the full content dimensions
-    const fullHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    
-    // Wait for reflow
-    await new Promise(resolve => setTimeout(resolve, 200));
-
-    // Capture the entire page content with proper sizing
-    const canvas = await html2canvas(document.body, {
-      scale: 2, // High quality for crisp text
-      useCORS: true,
-      allowTaint: false,
-      backgroundColor: '#ffffff',
-      width: window.innerWidth,
-      height: fullHeight, // Capture full page height
-      windowWidth: window.innerWidth,
-      windowHeight: fullHeight, // Use full height for window
-      scrollX: 0,
-      scrollY: 0,
-      x: 0,
-      y: 0,
-      foreignObjectRendering: true,
-      removeContainer: false
-    });
-
-    // A4 dimensions in mm
-    const A4_WIDTH = 210;
-    const A4_HEIGHT = 297;
-    const MARGIN = 1; // Absolute minimal margin for maximum text size
-    const CONTENT_WIDTH = A4_WIDTH - (MARGIN * 2);
-    const CONTENT_HEIGHT = A4_HEIGHT - (MARGIN * 2);
-
-    // Create PDF
-    const pdf = new jspdf.jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4'
-    });
-
-    // Calculate optimal sizing to maximize content while maintaining readability
-    const canvasAspectRatio = canvas.width / canvas.height;
-    const contentAspectRatio = CONTENT_WIDTH / CONTENT_HEIGHT;
-
-    let imgWidth, imgHeight;
-    
-    // Always prioritize using maximum available space for better readability
-    if (canvasAspectRatio > contentAspectRatio) {
-      // Content is wider - fit to width and scale height accordingly
-      imgWidth = CONTENT_WIDTH;
-      imgHeight = CONTENT_WIDTH / canvasAspectRatio;
-    } else {
-      // Content is taller - fit to height and scale width accordingly
-      imgHeight = CONTENT_HEIGHT;
-      imgWidth = CONTENT_HEIGHT * canvasAspectRatio;
-    }
-
-    // Ensure maximum size for readability (use 99.5% of available space minimum)
-    const minWidth = CONTENT_WIDTH * 0.995;
-    const minHeight = CONTENT_HEIGHT * 0.995;
-    
-    if (imgWidth < minWidth) {
-      const scale = minWidth / imgWidth;
-      imgWidth = minWidth;
-      imgHeight = imgHeight * scale;
-    }
-    
-    if (imgHeight < minHeight) {
-      const scale = minHeight / imgHeight;
-      imgHeight = minHeight;
-      imgWidth = imgWidth * scale;
-    }
-
-    // Center the content on the page
-    const xOffset = MARGIN + (CONTENT_WIDTH - imgWidth) / 2;
-    const yOffset = MARGIN + (CONTENT_HEIGHT - imgHeight) / 2;
-
-    // Add image to PDF
-    pdf.addImage(
-      canvas.toDataURL('image/png', 1.0),
-      'PNG',
-      xOffset,
-      yOffset,
-      imgWidth,
-      imgHeight,
-      undefined,
-      'FAST'
-    );
-
-    // Generate filename with current date and language
-    const currentDate = new Date().toISOString().split('T')[0];
-    const filename = `Adam_Khairi_Resume_${currentLanguage.toUpperCase()}_${currentDate}.pdf`;
-
-    // Save the PDF
-    pdf.save(filename);
-
-    // Restore UI elements
-    elementsToHide.forEach(el => {
-      if (el) el.style.visibility = 'visible';
-    });
-
-    // Restore profile image and header styles
-    if (profileImage) {
-      profileImage.style.display = '';
-    }
-    
-    if (headerElement) {
-      headerElement.style.cssText = originalHeaderStyle;
-    }
-    
-    if (headerContent) {
-      headerContent.style.cssText = originalHeaderContentStyle;
-    }
+    // Create PDF directly from data (device-independent approach)
+    await generateDirectPDF();
 
     // Restore button
     pdfButton.textContent = originalText;
@@ -278,42 +122,236 @@ async function exportToPDF() {
 
   } catch (error) {
     console.error('Error generating PDF:', error);
+    console.error('Error stack:', error.stack);
+    console.log('resumeData:', resumeData);
+    console.log('currentLanguage:', currentLanguage);
     
-    // Restore UI elements on error
-    const elementsToRestore = [
-      document.querySelector('.dark-mode-toggle'),
-      document.getElementById('language-toggle'), 
-      document.getElementById('pdf-export')
-    ];
-    
-    elementsToRestore.forEach(el => {
-      if (el) el.style.visibility = 'visible';
-    });
-
-    // Restore profile image and header styles on error
-    const profileImageRestore = document.querySelector('.profile-image');
-    const headerElementRestore = document.querySelector('.header');
-    const headerContentRestore = document.querySelector('.header-content');
-    
-    if (profileImageRestore) {
-      profileImageRestore.style.display = '';
-    }
-    
-    if (headerElementRestore) {
-      headerElementRestore.style.cssText = '';
-    }
-    
-    if (headerContentRestore) {
-      headerContentRestore.style.cssText = '';
-    }
-
     // Restore button
     const pdfButton = document.getElementById('pdf-export');
     pdfButton.textContent = 'PDF';
     pdfButton.disabled = false;
     
-    alert('Error generating PDF. Please try again.');
+    alert(`Error generating PDF: ${error.message}. Please check the console for details.`);
   }
+}
+
+async function generateDirectPDF() {
+  // Check if resumeData is available
+  if (!resumeData) {
+    console.error('Resume data not loaded');
+    throw new Error('Resume data not available');
+  }
+
+  // Create PDF with professional settings
+  const pdf = new jspdf.jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4'
+  });
+
+  const pageWidth = 210;
+  const pageHeight = 297;
+  const margin = 12;
+  let yPosition = margin;
+
+  // Helper function to add text with word wrap
+  function addText(text, x, y, options = {}) {
+    const fontSize = options.fontSize || 10;
+    const maxWidth = options.maxWidth || (pageWidth - 2 * margin);
+    const lineHeight = options.lineHeight || fontSize * 0.9;
+    
+    pdf.setFontSize(fontSize);
+    pdf.setFont(options.font || 'helvetica', options.style || 'normal');
+    
+    if (options.color && Array.isArray(options.color)) {
+      pdf.setTextColor(options.color[0], options.color[1], options.color[2]);
+    } else {
+      pdf.setTextColor(0, 0, 0);
+    }
+    
+    const lines = pdf.splitTextToSize(text, maxWidth);
+    for (let i = 0; i < lines.length; i++) {
+      pdf.text(lines[i], x, y + (i * lineHeight));
+    }
+    
+    return y + (lines.length * lineHeight);
+  }
+
+  // Helper function to add centered text
+  function addCenteredText(text, y, options = {}) {
+    const fontSize = options.fontSize || 10;
+    pdf.setFontSize(fontSize);
+    pdf.setFont(options.font || 'helvetica', options.style || 'normal');
+    
+    if (options.color && Array.isArray(options.color)) {
+      pdf.setTextColor(options.color[0], options.color[1], options.color[2]);
+    } else {
+      pdf.setTextColor(0, 0, 0);
+    }
+    
+    const textWidth = pdf.getStringUnitWidth(text) * fontSize / pdf.internal.scaleFactor;
+    const x = (pageWidth - textWidth) / 2;
+    pdf.text(text, x, y);
+    
+    return y + (fontSize * 0.35);
+  }
+
+  // Header Section
+  yPosition = addCenteredText('ADAM KHAIRI', yPosition + 4, {
+    fontSize: 20,
+    font: 'helvetica',
+    style: 'bold'
+  });
+
+  const title = resumeData.personalInfo[currentLanguage].title;
+  yPosition = addCenteredText(title, yPosition + 1, {
+    fontSize: 12,
+    color: [100, 100, 100]
+  });
+
+  // Contact Info
+  const contactData = resumeData.personalInfo[currentLanguage].contact;
+  yPosition = addCenteredText(`${contactData.email} | ${contactData.phone}`, yPosition + 5, {
+    fontSize: 9,
+    color: [52, 152, 219]
+  });
+
+  yPosition = addCenteredText(contactData.address, yPosition + 3, {
+    fontSize: 9
+  });
+
+  yPosition = addCenteredText(`github.com/adamkhairi | linkedin.com/in/adam-khairi`, yPosition + 3, {
+    fontSize: 9,
+    color: [52, 152, 219]
+  });
+
+  yPosition += 8;
+
+  // Experience Section
+  pdf.setFontSize(12);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setTextColor(0, 0, 0);
+  const expTitle = resumeData.sections[currentLanguage].experience;
+  pdf.text(expTitle, margin, yPosition);
+  pdf.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
+  yPosition += 8;
+
+  // Add experiences
+  const experiences = resumeData.experience[currentLanguage];
+  for (const exp of experiences) {
+    // Position title
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(exp.position, margin, yPosition);
+    yPosition += 4;
+
+    // Company
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(52, 152, 219);
+    pdf.text(exp.company, margin, yPosition);
+    yPosition += 4;
+
+    // Period and location
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(`${exp.period} | ${exp.location}`, margin, yPosition);
+    yPosition += 5;
+
+    // Responsibilities
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setTextColor(0, 0, 0);
+    
+    for (const resp of exp.responsibilities) {
+      const bulletText = `• ${resp}`;
+      yPosition = addText(bulletText, margin + 3, yPosition, {
+        fontSize: 9,
+        maxWidth: pageWidth - 2 * margin - 6,
+        lineHeight: 4
+      });
+      yPosition += 1;
+    }
+    yPosition += 3;
+  }
+
+  // Education Section
+  yPosition += 3;
+  pdf.setFontSize(12);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setTextColor(0, 0, 0);
+  const eduTitle = resumeData.sections[currentLanguage].education;
+  pdf.text(eduTitle, margin, yPosition);
+  pdf.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
+  yPosition += 8;
+
+  const education = resumeData.education[currentLanguage];
+  for (const edu of education) {
+    pdf.setFontSize(10);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(edu.degree, margin, yPosition);
+    yPosition += 4;
+
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(52, 152, 219);
+    pdf.text(edu.institution, margin, yPosition);
+    yPosition += 4;
+
+    // Period and location
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(`${edu.period} | ${edu.location}`, margin, yPosition);
+    yPosition += 4;
+
+    pdf.setFontSize(9);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(edu.field, margin + 3, yPosition);
+    yPosition += 6;
+  }
+
+  // Skills Section
+  yPosition += 3;
+  pdf.setFontSize(12);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setTextColor(0, 0, 0);
+  const skillsTitle = resumeData.sections[currentLanguage].skills;
+  pdf.text(skillsTitle, margin, yPosition);
+  pdf.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
+  yPosition += 8;
+
+  // Skills in columns
+  const skills = resumeData.skills[currentLanguage];
+  const skillsPerRow = 4;
+  const colWidth = (pageWidth - 2 * margin) / skillsPerRow;
+  
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica', 'normal');
+  pdf.setTextColor(0, 0, 0);
+  
+  for (let i = 0; i < skills.length; i++) {
+    const col = i % skillsPerRow;
+    const row = Math.floor(i / skillsPerRow);
+    const x = margin + (col * colWidth);
+    const y = yPosition + (row * 4);
+    
+    // Skill background
+    pdf.setFillColor(240, 240, 240);
+    pdf.roundedRect(x, y - 2, colWidth - 3, 3.7, 1, 1, 'F');
+    
+    // Skill text
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(skills[i], x + 2, y + 1);
+  }
+
+  // Generate filename and save
+  const currentDate = new Date().toISOString().split('T')[0];
+  const filename = `Adam_Khairi_Resume_${currentLanguage.toUpperCase()}_${currentDate}.pdf`;
+  pdf.save(filename);
 }
 
 // Add event listener for language toggle
