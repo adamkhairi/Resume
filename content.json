@@ -42,6 +42,18 @@
   "experience": {
     "fr": [
       {
+        "position" : "Formateur en Développement Web",
+        "company" : "Plateforme EERCHAD (I.N.D.H)",
+        "period" : "09/2024 - Currant",
+        "location" : "Casablanca",
+        "responsibilities" : [
+          "Formation en développement web : Cours sur HTML, CSS, JS, React, NodeJs, ExpressJs ,MongoDB, MySQL, TypeScript. Pour des groupes de 20-30 apprenants.",
+          "Suivi personnalisé : Aide aux apprenants, projets individuels.",
+          "Évaluation : Examens pratiques et théoriques.",
+          "Projets réels : Création de sites web et API. Travail en équipe en utilisant la méthodologie agile."
+        ]
+      },
+      {
         "position": "Développeur Front-End Angular - Platform EPEGA Sante Assurance",
         "company": "BRIGHT DEV",
         "period": "07/2021 - 08/2024",
@@ -75,6 +87,18 @@
       }
     ],
     "en": [
+      {
+        "position": "Web Development Trainer",
+        "company": "EERCHAD Platform (I.N.D.H)",
+        "period": "09/2024 - Current",
+        "location": "Casablanca",
+        "responsibilities": [
+          "Web development training: Courses on HTML, CSS, JS, React, NodeJs, ExpressJs, MongoDB, MySQL, TypeScript for groups of 20-30 learners.",
+          "Personalized support: Assisting learners, individual projects.",
+          "Assessment: Practical and theoretical exams.",
+          "Real-world projects: Creating websites and APIs. Teamwork using the agile methodology."
+        ]
+      },
       {
         "position": "Front-End Angular Developer - EPEGA Health Insurance Platform",
         "company": "BRIGHT DEV",
