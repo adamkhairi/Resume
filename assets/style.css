@@ -40,7 +40,7 @@ body {
 .tech-icon {
   position: fixed;
   color: var(--accent-color);
-  opacity: 0.25;
+  opacity: 0.35;
   font-size: 40px;
   pointer-events: none;
   z-index: -1;

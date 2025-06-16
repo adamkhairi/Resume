@@ -107,45 +107,212 @@ async function loadContent() {
 
 async function exportToPDF() {
   try {
-    const element = document.body;
-    const pdf = new jspdf.jsPDF({
-      orientation: "portrait",
-      unit: "mm",
-      format: "a4",
+    // Show loading indicator (visual feedback)
+    const pdfButton = document.getElementById('pdf-export');
+    const originalText = pdfButton.textContent;
+    pdfButton.textContent = 'Generating...';
+    pdfButton.disabled = true;
+
+    // Hide floating UI elements and profile image for clean capture
+    const elementsToHide = [
+      document.querySelector('.dark-mode-toggle'),
+      document.getElementById('language-toggle'), 
+      document.getElementById('pdf-export')
+    ];
+    
+    elementsToHide.forEach(el => {
+      if (el) el.style.visibility = 'hidden';
     });
 
-    // Get page dimensions
-    const pageWidth = 210;
-    const pageHeight = 297;
+    // Hide profile image and center header content for PDF
+    const profileImage = document.querySelector('.profile-image');
+    const headerElement = document.querySelector('.header');
+    const headerContent = document.querySelector('.header-content');
     
-    // Capture the content with proper scaling
-    const canvas = await html2canvas(element, {
-      scale: 2,
+    // Store original styles
+    const originalHeaderStyle = headerElement ? headerElement.style.cssText : '';
+    const originalHeaderContentStyle = headerContent ? headerContent.style.cssText : '';
+    
+    if (profileImage) {
+      profileImage.style.display = 'none';
+    }
+    
+    if (headerElement) {
+      headerElement.style.justifyContent = 'center';
+      headerElement.style.textAlign = 'center';
+    }
+    
+    if (headerContent) {
+      headerContent.style.textAlign = 'center';
+      headerContent.style.width = '100%';
+    }
+
+    // Wait a moment for DOM updates
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    // Force a reflow to ensure proper dimensions
+    document.body.style.overflow = 'visible';
+    document.documentElement.style.overflow = 'visible';
+    
+    // Get the full content dimensions
+    const fullHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    
+    // Wait for reflow
+    await new Promise(resolve => setTimeout(resolve, 200));
+
+    // Capture the entire page content with proper sizing
+    const canvas = await html2canvas(document.body, {
+      scale: 2, // High quality for crisp text
       useCORS: true,
-      windowHeight: element.scrollHeight
+      allowTaint: false,
+      backgroundColor: '#ffffff',
+      width: window.innerWidth,
+      height: fullHeight, // Capture full page height
+      windowWidth: window.innerWidth,
+      windowHeight: fullHeight, // Use full height for window
+      scrollX: 0,
+      scrollY: 0,
+      x: 0,
+      y: 0,
+      foreignObjectRendering: true,
+      removeContainer: false
     });
 
-    // Calculate image dimensions
-    const imgWidth = pageWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    // A4 dimensions in mm
+    const A4_WIDTH = 210;
+    const A4_HEIGHT = 297;
+    const MARGIN = 1; // Absolute minimal margin for maximum text size
+    const CONTENT_WIDTH = A4_WIDTH - (MARGIN * 2);
+    const CONTENT_HEIGHT = A4_HEIGHT - (MARGIN * 2);
 
-    // Scale content to fit page height if needed
-    const scaleFactor = imgHeight > pageHeight ? pageHeight / imgHeight : 1;
+    // Create PDF
+    const pdf = new jspdf.jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    // Calculate optimal sizing to maximize content while maintaining readability
+    const canvasAspectRatio = canvas.width / canvas.height;
+    const contentAspectRatio = CONTENT_WIDTH / CONTENT_HEIGHT;
+
+    let imgWidth, imgHeight;
     
-    const yOffset = imgHeight * scaleFactor < pageHeight ? (pageHeight - imgHeight * scaleFactor) / 2 : 0;
+    // Always prioritize using maximum available space for better readability
+    if (canvasAspectRatio > contentAspectRatio) {
+      // Content is wider - fit to width and scale height accordingly
+      imgWidth = CONTENT_WIDTH;
+      imgHeight = CONTENT_WIDTH / canvasAspectRatio;
+    } else {
+      // Content is taller - fit to height and scale width accordingly
+      imgHeight = CONTENT_HEIGHT;
+      imgWidth = CONTENT_HEIGHT * canvasAspectRatio;
+    }
 
+    // Ensure maximum size for readability (use 99.5% of available space minimum)
+    const minWidth = CONTENT_WIDTH * 0.995;
+    const minHeight = CONTENT_HEIGHT * 0.995;
+    
+    if (imgWidth < minWidth) {
+      const scale = minWidth / imgWidth;
+      imgWidth = minWidth;
+      imgHeight = imgHeight * scale;
+    }
+    
+    if (imgHeight < minHeight) {
+      const scale = minHeight / imgHeight;
+      imgHeight = minHeight;
+      imgWidth = imgWidth * scale;
+    }
+
+    // Center the content on the page
+    const xOffset = MARGIN + (CONTENT_WIDTH - imgWidth) / 2;
+    const yOffset = MARGIN + (CONTENT_HEIGHT - imgHeight) / 2;
+
+    // Add image to PDF
     pdf.addImage(
-      canvas,
-      "PNG",
-      0,
+      canvas.toDataURL('image/png', 1.0),
+      'PNG',
+      xOffset,
       yOffset,
-      imgWidth * scaleFactor,
-      imgHeight * scaleFactor
+      imgWidth,
+      imgHeight,
+      undefined,
+      'FAST'
     );
 
-    pdf.save("adam_khairi_resume.pdf");
+    // Generate filename with current date and language
+    const currentDate = new Date().toISOString().split('T')[0];
+    const filename = `Adam_Khairi_Resume_${currentLanguage.toUpperCase()}_${currentDate}.pdf`;
+
+    // Save the PDF
+    pdf.save(filename);
+
+    // Restore UI elements
+    elementsToHide.forEach(el => {
+      if (el) el.style.visibility = 'visible';
+    });
+
+    // Restore profile image and header styles
+    if (profileImage) {
+      profileImage.style.display = '';
+    }
+    
+    if (headerElement) {
+      headerElement.style.cssText = originalHeaderStyle;
+    }
+    
+    if (headerContent) {
+      headerContent.style.cssText = originalHeaderContentStyle;
+    }
+
+    // Restore button
+    pdfButton.textContent = originalText;
+    pdfButton.disabled = false;
+
   } catch (error) {
-    console.error("Error generating PDF:", error);
+    console.error('Error generating PDF:', error);
+    
+    // Restore UI elements on error
+    const elementsToRestore = [
+      document.querySelector('.dark-mode-toggle'),
+      document.getElementById('language-toggle'), 
+      document.getElementById('pdf-export')
+    ];
+    
+    elementsToRestore.forEach(el => {
+      if (el) el.style.visibility = 'visible';
+    });
+
+    // Restore profile image and header styles on error
+    const profileImageRestore = document.querySelector('.profile-image');
+    const headerElementRestore = document.querySelector('.header');
+    const headerContentRestore = document.querySelector('.header-content');
+    
+    if (profileImageRestore) {
+      profileImageRestore.style.display = '';
+    }
+    
+    if (headerElementRestore) {
+      headerElementRestore.style.cssText = '';
+    }
+    
+    if (headerContentRestore) {
+      headerContentRestore.style.cssText = '';
+    }
+
+    // Restore button
+    const pdfButton = document.getElementById('pdf-export');
+    pdfButton.textContent = 'PDF';
+    pdfButton.disabled = false;
+    
+    alert('Error generating PDF. Please try again.');
   }
 }
 
