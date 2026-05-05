@@ -45,13 +45,13 @@ const content = {
       {
         "position": "Freelance",
         "company" : "INDÉPENDANT",
-        "period" : "12/2025 - Current",
+        "period" : "01/2026 - Current",
         "location": "Marrakech",
         "responsibilities": [
-            "J'ai travaillé sur divers projets freelance, notamment sur le développement d'une boutique en ligne avec NextJS, une plateforme d'apprentissage en ligne avec React et NodeJS, et une API avec NestJS.",
-          "Demo Store :  https://store-app-smoky-one.vercel.app/",
-          "Demo E-Learning Platform : https://elearn-app.vercel.app/",
-          "NestJS API : https://github.com/adamkhairi/nestjs-api"
+            "J'ai travaillé sur divers projets freelance, notamment sur le développement d'une boutique en ligne avec NextJS, une plateforme d'apprentissage en ligne avec React et NodeJS, et une plateforme de gestion de praticiens dentaires avec NextJS et TailwindCSS.",
+            "Demo Store :  https://store-app-smoky-one.vercel.app/",
+            "Demo E-Learning Platform : https://elearn-app.vercel.app/",
+            "Demo Dental Practice Platform : https://dental-practice-kappa.vercel.app/"
         ]
       },
       {
@@ -90,18 +90,26 @@ const content = {
         "period": "09/2019 - 10/2019",
         "location": "Ait Ourir",
         "responsibilities": ["Développer des sites web statiques pour les clients", "Création des logos, des prospectus, des cartes de visite et des affiches"]
+      },
+      {
+        "position": "Technicien en Maintenance Informatique et Réseau (Stage)",
+        "company": "GEANT COMPUTER",
+        "period": "07/2017 - 09/2017",
+        "location": "Marrakech",
+        "responsibilities": ["Installation et maintenance des équipements informatiques et réseaux", "Assistance technique aux utilisateurs", "Travailler sur Linux et Windows Server"]
       }
     ],
     "en": [
       {
         "position": "Freelance",
         "company" : "SELF EMPLOYED",
-        "period" : "12/2025 - Current",
+        "period" : "01/2026 - Current",
         "location": "Marrakech",
         "responsibilities": [
-          "Demo E-Learning Platform : https://elearn-app.vercel.app/",
-          "Demo Store :  https://store-app-smoky-one.vercel.app/",
-          "NestJS API : https://github.com/adamkhairi/nestjs-api"
+            "I've worked on various freelance projects, including developing a online store with NextJS, an online learning platform with React and NodeJS, and a dental practice management platform with NextJS and TailwindCSS.",
+            "Demo Store :  https://store-app-smoky-one.vercel.app/",
+            "Demo E-Learning Platform : https://elearn-app.vercel.app/",
+            "Demo Dental Practice Platform : https://dental-practice-kappa.vercel.app/"
         ]
       },
       {
@@ -153,7 +161,7 @@ const content = {
   "education": {
     "fr": [
       {
-        "degree": "Developpeur Web",
+        "degree": "Full Stack Développeur",
         "institution": "YOUCODE",
         "period": "2019 - 2021",
         "location": "Youssoufia",
@@ -169,7 +177,7 @@ const content = {
     ],
     "en": [
       {
-        "degree": "Web Developer",
+        "degree": "Full Stack Developer",
         "institution": "YOUCODE",
         "period": "2019 - 2021",
         "location": "Youssoufia",
