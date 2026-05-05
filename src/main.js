@@ -1,4 +1,4 @@
-import content from './assets/content.json'
+import content from './assets/content.js'
 
 let currentLanguage = 'fr'
 let resumeData = content

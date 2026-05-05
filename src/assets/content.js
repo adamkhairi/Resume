@@ -1,0 +1,192 @@
+const content = {
+  "languages": {
+    "fr": "Français",
+    "en": "English"
+  },
+  "personalInfo": {
+    "fr": {
+      "name": "ADAM KHAIRI",
+      "title": "Développeur Full Stack",
+      "contact": {
+        "email": "khairiadam2@gmail.com",
+        "phone": "+212 6 41 14 51 42",
+        "address": "N 17, Quartier Lot El Macira 42050 Ait Ourir, Marrakech",
+        "github": "github.com/adamkhairi",
+        "linkedin": "linkedin.com/in/adam-khairi",
+        "Portfolio" : "https://adamkhairi.vercel.app/"
+      }
+    },
+    "en": {
+      "name": "ADAM KHAIRI",
+      "title": "Full Stack Developer",
+      "contact": {
+        "email": "khairiadam2@gmail.com",
+        "phone": "+212 6 41 14 51 42",
+        "address": "N 17, Quartier Lot El Macira 42050 Ait Ourir, Marrakech",
+        "github": "github.com/adamkhairi",
+        "linkedin": "linkedin.com/in/adam-khairi"
+      }
+    }
+  },
+  "sections": {
+    "fr": {
+      "experience": "EXPÉRIENCE PROFESSIONNELLE",
+      "education": "FORMATIONS",
+      "skills": "COMPÉTENCES"
+    },
+    "en": {
+      "experience": "PROFESSIONAL EXPERIENCE",
+      "education": "EDUCATION",
+      "skills": "SKILLS"
+    }
+  },
+  "experience": {
+    "fr": [
+      {
+        "position": "Freelance",
+        "company" : "INDÉPENDANT",
+        "period" : "12/2025 - Current",
+        "location": "Marrakech",
+        "responsibilities": [
+          "Demo Store :  https://store-app-smoky-one.vercel.app/",
+          "Demo E-Learning Platform : https://elearn-app.vercel.app/",
+          "NestJS API : https://github.com/adamkhairi/nestjs-api"
+        ]
+      },
+      {
+        "position": "Full Stack Development Formateur",
+        "company": "Plateforme EERCHAD (I.N.D.H)",
+        "period": "05/2025 - 11/2025",
+        "location": "Casablanca",
+        "responsibilities": [
+          "Formateur de Développement web : Cours sur HTML, CSS, JS, React, NodeJs, ExpressJs ,MongoDB, MySQL, TypeScript. Pour des groupes de 20-30 apprenants.",
+          "Suivi personnalisé : Aide aux apprenants, projets individuels.",
+          "Évaluation : Examens pratiques et théoriques.",
+          "Projets réels : Création de sites web et API. Travail en équipe en utilisant la méthodologie agile."
+        ]
+      },
+      {
+        "position": "Développeur Front-End Angular - Platform EPEGA Sante Assurance",
+        "company": "BRIGHT DEV",
+        "period": "07/2021 - 10/2024",
+        "location": "Casablanca",
+        "responsibilities": [
+          "Contribuer au développement et à la maintenance du front-end de la plateforme d'assurance-maladie EPEGA en utilisant Angular",
+          "Collaboration avec l'équipe fonctionnelles pour définir, concevoir, tester et livrer de nouveaux composants et fonctionnalités",
+          "Assurer la performance, la qualité et la réactivité des applications"
+        ]
+      },
+      {
+        "position": "Développeur Web (Stage)",
+        "company": "INTELLCAP",
+        "period": "07/2020 - 09/2020",
+        "location": "Rabat",
+        "responsibilities": ["Création d'un site web dynamique en utilisant Laravel et JavaScript", "Contribution à des solutions Web développées pour améliorer l'expérience utilisateur client"]
+      },
+      {
+        "position": "Web Designer (Stage)",
+        "company": "ARTNÉS COMMUNICATION",
+        "period": "09/2019 - 10/2019",
+        "location": "Ait Ourir",
+        "responsibilities": ["Développer des sites web statiques pour les clients", "Création des logos, des prospectus, des cartes de visite et des affiches"]
+      }
+    ],
+    "en": [
+      {
+        "position": "Freelance",
+        "company" : "SELF EMPLOYED",
+        "period" : "12/2025 - Current",
+        "location": "Marrakech",
+        "responsibilities": [
+          "Demo E-Learning Platform : https://elearn-app.vercel.app/",
+          "Demo Store :  https://store-app-smoky-one.vercel.app/",
+          "NestJS API : https://github.com/adamkhairi/nestjs-api"
+        ]
+      },
+      {
+        "position": "Full Stack Development Trainer",
+        "company": "EERCHAD Platform (I.N.D.H)",
+        "period": "05/2025 - 11/2025",
+        "location": "Casablanca",
+        "responsibilities": [
+          "Web development training: Courses on HTML, CSS, JS, React, NodeJs, ExpressJs, MongoDB, MySQL, TypeScript for groups of 20-30 students.",
+          "Personalized support: Assisting learners, individual projects.",
+          "Assessment: Practical and theoretical exams.",
+          "Real-world projects: Creating and Designing Flayers, Business Cards, Short Advertisement Videos, ...etc."
+        ]
+      },
+      {
+        "position": "Front-End Angular Developer - EPEGA Health Insurance Platform",
+        "company": "BRIGHT DEV",
+        "period": "07/2021 - 08/2024",
+        "location": "Casablanca",
+        "responsibilities": [
+          "Contributing to the development and maintenance of the EPEGA health insurance platform front-end using Angular",
+          "Collaborating with the functional team to define, design, test and deliver new components and features",
+          "Ensuring application performance, quality and responsiveness"
+        ]
+      },
+      {
+        "position": "Web Developer (Internship)",
+        "company": "INTELLCAP",
+        "period": "07/2020 - 09/2020",
+        "location": "Rabat",
+        "responsibilities": ["Creation of a dynamic website using Laravel and JavaScript", "Contributing to Web solutions developed to improve client user experience"]
+      },
+      {
+        "position": "Web Designer (Internship)",
+        "company": "ARTNÉS COMMUNICATION",
+        "period": "09/2019 - 10/2019",
+        "location": "Ait Ourir",
+        "responsibilities": ["Developing static websites for clients", "Creating logos, brochures, business cards and posters"]
+      },
+      {
+        "position": "Network Technician (Internship)",
+        "company": "GEANT COMPUTER",
+        "period": "07/2017 - 09/2017",
+        "location": "Marrakech",
+        "responsibilities": ["Installation, Configuration, Maintenance of Computer and Network Equipment and Services at Server level - Linux / Windows Server 2012"]
+      }
+    ]
+  },
+  "education": {
+    "fr": [
+      {
+        "degree": "Developpeur Web",
+        "institution": "YOUCODE",
+        "period": "2019 - 2021",
+        "location": "Youssoufia",
+        "field": "Web Développement - Full Stack"
+      },
+      {
+        "degree": "Technicien Spécialisé en Développement Multimédia",
+        "institution": "GROUPE DES INSTITUTS EXCEL MEDIA",
+        "period": "2017 - 2019",
+        "location": "Marrakech",
+        "field": "Développement et Multimédia"
+      }
+    ],
+    "en": [
+      {
+        "degree": "Web Developer",
+        "institution": "YOUCODE",
+        "period": "2019 - 2021",
+        "location": "Youssoufia",
+        "field": "Web Development - Full Stack"
+      },
+      {
+        "degree": "Specialized Technician - Multimédia Development",
+        "institution": "GROUPE DES INSTITUTS EXCEL MEDIA",
+        "period": "2017 - 2019",
+        "location": "Marrakech",
+        "field": "Development and Multimedia"
+      }
+    ]
+  },
+  "skills": {
+    "fr": ["Linux ❤︎", "Next.js", "Angular", "PHP - Laravel", "Node.js", "TypeScript", "SQL / ORM", "Web Design", "Azure DevOps", "Express/Fastify/NestJS", "PostgreSQL", "MongoDB", "MySQL"],
+    "en": ["Linux ❤︎", "Next.js", "Angular", "PHP - Laravel", "Node.js", "TypeScript", "SQL / ORM", "Web Design", "Azure DevOps", "Express/Fastify/NestJS", "PostgreSQL", "MongoDB", "MySQL"]
+  }
+}
+
+export default content
