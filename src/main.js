@@ -106,15 +106,10 @@ function updateContent() {
     })
 }
 
-async function loadContent() {
-    try {
-        const response = await fetch('/src/assets/content.json')
-        resumeData = await response.json()
-        updateLanguageButton()
-        updateContent()
-    } catch (error) {
-        console.error('Error loading content:', error)
-    }
+function loadContent() {
+    resumeData = content
+    updateLanguageButton()
+    updateContent()
 }
 
 async function exportToPDF() {
