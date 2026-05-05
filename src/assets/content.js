@@ -48,6 +48,7 @@ const content = {
         "period" : "12/2025 - Current",
         "location": "Marrakech",
         "responsibilities": [
+            "J'ai travaillé sur divers projets freelance, notamment sur le développement d'une boutique en ligne avec NextJS, une plateforme d'apprentissage en ligne avec React et NodeJS, et une API avec NestJS.",
           "Demo Store :  https://store-app-smoky-one.vercel.app/",
           "Demo E-Learning Platform : https://elearn-app.vercel.app/",
           "NestJS API : https://github.com/adamkhairi/nestjs-api"

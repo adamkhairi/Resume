@@ -13,12 +13,12 @@ In your GitHub repository:
 
 ### 2) Trigger deployment
 
-The workflow is defined in `.github/workflows/deploy-pages.yml` and runs on every push to `main`.
+The workflow is defined in `.github/workflows/deploy-pages.yml` and runs on every push to `main` and `master`.
 
-You can deploy by pushing to `main`:
+You can deploy by pushing to your default branch:
 
 ```bash
-git push origin main
+git push origin master
 ```
 
 ### 3) Local build check
