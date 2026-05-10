@@ -167,144 +167,118 @@ async function generateDirectPDF() {
     const pageWidth = 210;
     const pageHeight = 297;
     const margin = 12;
+    const LH = 4.0;             // bullet line-height (mm)
     let yPosition = margin;
 
-    // Helper function to add text with word wrap
+    // ── Helpers ──────────────────────────────────────────────────────
+
     function addText(text, x, y, options = {}) {
-        const fontSize = options.fontSize || 10;
-        const maxWidth = options.maxWidth || (pageWidth - 2 * margin);
-        const lineHeight = options.lineHeight || fontSize * 0.9;
-
+        const fontSize  = options.fontSize  || 9;
+        const maxWidth  = options.maxWidth  || (pageWidth - 2 * margin - 5);
+        const lineH     = options.lineHeight || LH;
         pdf.setFontSize(fontSize);
         pdf.setFont(options.font || 'helvetica', options.style || 'normal');
-
         if (options.color && Array.isArray(options.color)) {
-            pdf.setTextColor(options.color[0], options.color[1], options.color[2]);
+            pdf.setTextColor(...options.color);
         } else {
             pdf.setTextColor(0, 0, 0);
         }
-
         const lines = pdf.splitTextToSize(text, maxWidth);
-        for (let i = 0; i < lines.length; i++) {
-            pdf.text(lines[i], x, y + (i * lineHeight));
-        }
-
-        return y + (lines.length * lineHeight);
+        lines.forEach((line, i) => pdf.text(line, x, y + i * lineH));
+        return y + lines.length * lineH;
     }
 
-    // Helper function to add centered text
-    function addCenteredText(text, y, options = {}) {
+    function addCentred(text, y, options = {}) {
         const fontSize = options.fontSize || 10;
         pdf.setFontSize(fontSize);
         pdf.setFont(options.font || 'helvetica', options.style || 'normal');
-
         if (options.color && Array.isArray(options.color)) {
-            pdf.setTextColor(options.color[0], options.color[1], options.color[2]);
+            pdf.setTextColor(...options.color);
         } else {
             pdf.setTextColor(0, 0, 0);
         }
-
-        const textWidth = pdf.getStringUnitWidth(text) * fontSize / pdf.internal.scaleFactor;
-        const x = (pageWidth - textWidth) / 2;
-        pdf.text(text, x, y);
-
-        return y + (fontSize * 0.35);
+        const tw = pdf.getStringUnitWidth(text) * fontSize / pdf.internal.scaleFactor;
+        pdf.text(text, (pageWidth - tw) / 2, y);
+        return y + fontSize * 0.35;
     }
 
-    // Header Section
-    yPosition = addCenteredText('ADAM KHAIRI', yPosition + 4, {
-        fontSize: 20,
-        font: 'helvetica',
-        style: 'bold'
+    function sectionHeading(label, y) {
+        pdf.setFontSize(11);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor(0, 0, 0);
+        pdf.text(label, margin, y);
+        pdf.setLineWidth(0.3);
+        pdf.line(margin, y + 1.2, pageWidth - margin, y + 1.2);
+        return y + 6.5;
+    }
+
+    // ── Header ───────────────────────────────────────────────────────
+    yPosition = addCentred('ADAM KHAIRI', yPosition + 8, {
+        fontSize: 18, font: 'helvetica', style: 'bold'
     });
 
-    const title = resumeData.personalInfo[currentLanguage].title;
-    yPosition = addCenteredText(title, yPosition + 1, {
-        fontSize: 12,
-        color: [100, 100, 100]
+    const titleText = resumeData.personalInfo[currentLanguage].title;
+    yPosition = addCentred(titleText, yPosition + 3.5, {
+        fontSize: 10, color: [100, 100, 100]
     });
 
-    // Contact Info
     const contactData = resumeData.personalInfo[currentLanguage].contact;
-    yPosition = addCenteredText(`${contactData.email} | ${contactData.phone}`, yPosition + 5, {
-        fontSize: 9,
-        color: [52, 152, 219]
+    yPosition = addCentred(
+        `${contactData.email}  |  ${contactData.phone}  |  github.com/adamkhairi  |  linkedin.com/in/adam-khairi`,
+        yPosition + 4,
+        { fontSize: 8, color: [52, 152, 219] }
+    );
+    yPosition = addCentred(contactData.address, yPosition + 3, {
+        fontSize: 8, color: [100, 100, 100]
     });
 
-    yPosition = addCenteredText(contactData.address, yPosition + 3, {
-        fontSize: 9
-    });
+    yPosition += 5;
 
-    yPosition = addCenteredText(`github.com/adamkhairi | linkedin.com/in/adam-khairi`, yPosition + 3, {
-        fontSize: 9,
-        color: [52, 152, 219]
-    });
+    // ── Experience ───────────────────────────────────────────────────
+    yPosition = sectionHeading(resumeData.sections[currentLanguage].experience, yPosition);
 
-    yPosition += 8;
-
-    // Experience Section
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'bold');
-    pdf.setTextColor(0, 0, 0);
-    const expTitle = resumeData.sections[currentLanguage].experience;
-    pdf.text(expTitle, margin, yPosition);
-    pdf.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
-    yPosition += 8;
-
-    // Add experiences
-    const experiences = resumeData.experience[currentLanguage];
-    for (const exp of experiences) {
-        // Position title
-        pdf.setFontSize(10);
+    for (const exp of resumeData.experience[currentLanguage]) {
+        // Position
+        pdf.setFontSize(9.5);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(0, 0, 0);
         pdf.text(exp.position, margin, yPosition);
         yPosition += 4;
 
-        // Company
+        // Company (left) + period | location (right) on the same baseline
         pdf.setFontSize(9);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(52, 152, 219);
         pdf.text(exp.company, margin, yPosition);
+
+        const dateLoc = `${exp.period} | ${exp.location}`;
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(120, 120, 120);
+        pdf.setFontSize(8.5);
+        const dateW = pdf.getStringUnitWidth(dateLoc) * 8.5 / pdf.internal.scaleFactor;
+        pdf.text(dateLoc, pageWidth - margin - dateW, yPosition);
         yPosition += 4;
 
-        // Period and location
-        pdf.setFontSize(9);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(100, 100, 100);
-        pdf.text(`${exp.period} | ${exp.location}`, margin, yPosition);
-        yPosition += 5;
-
-        // Responsibilities
-        pdf.setFontSize(9);
+        // Bullets
         pdf.setFont('helvetica', 'normal');
         pdf.setTextColor(0, 0, 0);
-
         for (const resp of exp.responsibilities) {
-            const bulletText = `• ${resp}`;
-            yPosition = addText(bulletText, margin + 3, yPosition, {
-                fontSize: 9,
+            yPosition = addText(`• ${resp}`, margin + 3, yPosition, {
+                fontSize: 8.5,
                 maxWidth: pageWidth - 2 * margin - 6,
-                lineHeight: 4
+                lineHeight: LH
             });
-            yPosition += 1;
+            yPosition += 0.6;
         }
         yPosition += 3;
     }
 
-    // Education Section
-    yPosition += 3;
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'bold');
-    pdf.setTextColor(0, 0, 0);
-    const eduTitle = resumeData.sections[currentLanguage].education;
-    pdf.text(eduTitle, margin, yPosition);
-    pdf.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
-    yPosition += 8;
+    // ── Education ────────────────────────────────────────────────────
+    yPosition += 2;
+    yPosition = sectionHeading(resumeData.sections[currentLanguage].education, yPosition);
 
-    const education = resumeData.education[currentLanguage];
-    for (const edu of education) {
-        pdf.setFontSize(10);
+    for (const edu of resumeData.education[currentLanguage]) {
+        pdf.setFontSize(9.5);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(0, 0, 0);
         pdf.text(edu.degree, margin, yPosition);
@@ -314,52 +288,43 @@ async function generateDirectPDF() {
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(52, 152, 219);
         pdf.text(edu.institution, margin, yPosition);
-        yPosition += 4;
 
-        // Period and location
-        pdf.setFontSize(9);
+        const eduDate = `${edu.period} | ${edu.location}`;
         pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(100, 100, 100);
-        pdf.text(`${edu.period} | ${edu.location}`, margin, yPosition);
+        pdf.setTextColor(120, 120, 120);
+        pdf.setFontSize(8.5);
+        const eduDateW = pdf.getStringUnitWidth(eduDate) * 8.5 / pdf.internal.scaleFactor;
+        pdf.text(eduDate, pageWidth - margin - eduDateW, yPosition);
         yPosition += 4;
 
-        pdf.setFontSize(9);
-        pdf.setTextColor(0, 0, 0);
+        pdf.setFontSize(8.5);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(60, 60, 60);
         pdf.text(edu.field, margin + 3, yPosition);
-        yPosition += 6;
+        yPosition += 4.5;
     }
 
-    // Skills Section
-    yPosition += 3;
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'bold');
-    pdf.setTextColor(0, 0, 0);
-    const skillsTitle = resumeData.sections[currentLanguage].skills;
-    pdf.text(skillsTitle, margin, yPosition);
-    pdf.line(margin, yPosition + 1, pageWidth - margin, yPosition + 1);
-    yPosition += 8;
+    // ── Skills ───────────────────────────────────────────────────────
+    yPosition += 2;
+    yPosition = sectionHeading(resumeData.sections[currentLanguage].skills, yPosition);
 
-    // Skills in columns
     const skills = resumeData.skills[currentLanguage].map(sanitizeForPDF);
     const skillsPerRow = 4;
-    const colWidth = (pageWidth - 2 * margin) / skillsPerRow;
+    const colWidth    = (pageWidth - 2 * margin) / skillsPerRow;
+    const skillRowH   = 5.5;
 
-    pdf.setFontSize(9);
+    pdf.setFontSize(8.5);
     pdf.setFont('helvetica', 'normal');
-    pdf.setTextColor(0, 0, 0);
 
     for (let i = 0; i < skills.length; i++) {
         const col = i % skillsPerRow;
         const row = Math.floor(i / skillsPerRow);
-        const x = margin + (col * colWidth);
-        const y = yPosition + (row * 4);
+        const x   = margin + col * colWidth;
+        const y   = yPosition + row * skillRowH;
 
-        // Skill background
-        pdf.setFillColor(240, 240, 240);
-        pdf.roundedRect(x, y - 2, colWidth - 3, 3.7, 1, 1, 'F');
-
-        // Skill text
-        pdf.setTextColor(0, 0, 0);
+        pdf.setFillColor(242, 242, 242);
+        pdf.roundedRect(x, y - 2.2, colWidth - 2.5, 4.2, 1, 1, 'F');
+        pdf.setTextColor(30, 30, 30);
         pdf.text(skills[i], x + 2, y + 1);
     }
 

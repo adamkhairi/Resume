@@ -49,9 +49,9 @@ const content = {
         "location": "Marrakech",
         "responsibilities": [
             "J'ai travaillé sur divers projets freelance, notamment sur le développement d'une boutique en ligne avec NextJS, une plateforme d'apprentissage en ligne avec React et NodeJS, et une plateforme de gestion de praticiens dentaires avec NextJS et TailwindCSS.",
-            "Demo Store :  https://store-app-smoky-one.vercel.app/",
+            "Demo Dental Practice Platform : https://dental-practice-kappa.vercel.app/",
             "Demo E-Learning Platform : https://elearn-app.vercel.app/",
-            "Demo Dental Practice Platform : https://dental-practice-kappa.vercel.app/"
+            "Demo Store :  https://store-app-smoky-one.vercel.app/",
         ]
       },
       {
@@ -87,7 +87,7 @@ const content = {
       {
         "position": "Web Designer (Stage)",
         "company": "ARTNÉS COMMUNICATION",
-        "period": "09/2019 - 10/2019",
+        "period": "06/2019 - 10/2019",
         "location": "Ait Ourir",
         "responsibilities": ["Développer des sites web statiques pour les clients", "Création des logos, des prospectus, des cartes de visite et des affiches"]
       },
@@ -107,9 +107,9 @@ const content = {
         "location": "Marrakech",
         "responsibilities": [
             "I've worked on various freelance projects, including developing a online store with NextJS, an online learning platform with React and NodeJS, and a dental practice management platform with NextJS and TailwindCSS.",
-            "Demo Store :  https://store-app-smoky-one.vercel.app/",
+            "Demo Dental Practice Platform : https://dental-practice-kappa.vercel.app/",
             "Demo E-Learning Platform : https://elearn-app.vercel.app/",
-            "Demo Dental Practice Platform : https://dental-practice-kappa.vercel.app/"
+            "Demo Store :  https://store-app-smoky-one.vercel.app/",
         ]
       },
       {
@@ -145,7 +145,7 @@ const content = {
       {
         "position": "Web Designer (Internship)",
         "company": "ARTNÉS COMMUNICATION",
-        "period": "09/2019 - 10/2019",
+        "period": "06/2019 - 10/2019",
         "location": "Ait Ourir",
         "responsibilities": ["Developing static websites for clients", "Creating logos, brochures, business cards and posters"]
       },
